@@ -1,15 +1,72 @@
 <!doctype html>
+
+<head>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+
+<script>
+    d3.select("body")
+      .selectAll("summary")
+      .data([1, 2, 3])
+      .enter.append("p");
+
+</script>
+
+<style>
+table {
+   font-family: arial, sans-serif;
+   border-collapse: collapse;
+   width: 100%;
+}
+
+td, th {
+           border: 1px solid #dddddd;
+           text-align: left;
+            padding: 8px;
+}
+
+tr:nth-child(even) {
+   background-color: #dddddd;
+}
+</style>
+
 <title>Occupation Overview</title>
+
+
+</head>
+<body>
+
 <div>
     Occupation Overview
 </div>
 
-{{ occupation }}
-
 {{ occupation.title }}
+
+<div id="summary">
+    <table>
+        <tr>
+            <td>
+                <div id="jobs" class="summary">
+                    {{ summary['jobs'] }}
+                </div>
+            </td>
+            <td>
+                <div id="growth" class="summary">
+                    {{ summary['jobs_growth'] }}
+                </div>
+            </td>
+            <td>
+                <div id="earnings" class="summary">
+                    {{ summary['earnings'] }}
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
 
 <div id="trends">
     Regional Trends
+    {{ trend_comparison }}
 </div>
 
 
@@ -17,4 +74,7 @@
 
 <div id="industries">
     Industries Employing {{ occupation.title }}
+    {{ employing_industries }}
 </div>
+
+</body>
